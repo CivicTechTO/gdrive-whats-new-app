@@ -33,6 +33,15 @@ pipenv install
 pipenv run gunicorn app:app --log-file -
 ```
 
+## Deployment
+
+- The [demo heroku app][demo] will auto-deploy all changes to `master` branch
+  on GitHub.
+- To self-host you own version, use the "Deploy to Heroki" button.
+  [`#TODO`](https://www.heroku.com/elements/buttons)
+
+   [demo]: https://gdrive-whats-new-app.herokuapp.com/
+
 ## :copyright: License
 
 GPL3
