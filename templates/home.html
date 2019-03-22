@@ -1,0 +1,6 @@
+{% extends "templates/layout.html" %}
+{% block content %}
+  {% filter crop_readme | markdown -%}
+    {% include 'README.md' %}
+  {%- endfilter %}
+{% endblock %}
