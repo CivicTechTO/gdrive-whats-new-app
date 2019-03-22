@@ -1,6 +1,6 @@
 {% extends "templates/layout.html" %}
 {% block content %}
-  {% filter crop_readme | markdown -%}
+  {% filter format_readme(base_url=request.base_url) | markdown -%}
     {% include 'README.md' %}
   {%- endfilter %}
 {% endblock %}
