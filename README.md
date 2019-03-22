@@ -6,7 +6,7 @@ A small app to resolve a Google Drive folder to its newest file.
 
 ## Usage
 
-So if this app is hosted at `http://example.com`, you would append the
+If this app is hosted at `http://example.com`, you would append the
 URL to a readable Google Drive folder like so:
 
 [`http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt`][sample]
