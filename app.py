@@ -5,6 +5,7 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 APP_BASE_URL_DEFAULT = 'http://example.com'
+GOOGLE_SCOPES = ['https://www.googleapis.com/auth/drive']
 
 app = Flask(__name__, template_folder='.')
 Markdown(app)
@@ -12,8 +13,12 @@ Markdown(app)
 @app.route('/')
 def home():
     folder_url = request.args.get('folder_url')
+    select_by = request.args.get('select_by', 'createdDate')
     if folder_url:
-        return redirect(folder_url)
+        folder_id = folder_url.split('/')[-1]
+        file = get_newest_file(folder_id, select_by)
+        redirect_url = file['alternateLink'] if file else folder_url
+        return redirect(redirect_url)
 
     return render_template('templates/home.html')
 
@@ -23,3 +28,15 @@ def format_readme(content, base_url):
     content = content.split('\n---')[0]
     content = content.replace(APP_BASE_URL_DEFAULT, base_url)
     return content
+
+def get_newest_file(folder_id, select_by):
+    creds = ServiceAccountCredentials.from_json_keyfile_name('service-key.json', GOOGLE_SCOPES)
+    gauth = GoogleAuth()
+    gauth.credentials = creds
+    gdrive = GoogleDrive(gauth)
+
+    query = "'{}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false".format(folder_id)
+    file_list = gdrive.ListFile({'q': query}).GetList()
+    file_list = sorted(file_list, key=lambda i: i[select_by], reverse=True)
+
+    return file_list[0] if file_list else ''

@@ -9,12 +9,19 @@ A small app to resolve a Google Drive folder to its newest file.
 If this app is hosted at `http://example.com`, you would append the
 URL to a readable Google Drive folder like so:
 
-[`http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt`][sample]
+[`http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt`][example1]
 
-[sample]: http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt
+[example1]: http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt
 
-The app will redirect to the most recently created file listed in the
-folder!
+### Additional Options
+
+By default, the app will redirect to the most recently _created_ file
+listed in the folder. You may also select based on other fields, like
+so:
+
+[`http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt&select_by=modifiedDate`][example2]
+
+[example2]: http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt&select_by=modifiedDate
 
 <!-- Everything above this linebreak will appear on app homepage. -->
 ---
