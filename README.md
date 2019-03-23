@@ -2,8 +2,6 @@
 
 A small app to resolve a Google Drive folder to its newest file.
 
-**Note:** This is a work-in-progress, and not yet functional.
-
 ## Usage
 
 If this app is hosted at `http://example.com`, you would append the
