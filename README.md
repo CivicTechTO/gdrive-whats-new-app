@@ -1,6 +1,6 @@
 # What's New (on GDrive)
 
-A small app to resolve a Google Drive folder to its newest file.
+A small app for redirecting to a Google Drive folder's newest file.
 
 ## Usage
 
