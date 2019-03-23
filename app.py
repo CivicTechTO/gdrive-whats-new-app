@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import requests
 
 from flask import Flask, redirect, request, render_template
 from flaskext.markdown import Markdown
@@ -21,6 +22,12 @@ def home():
     folder_url = request.args.get('folder_url')
     select_by = request.args.get('select_by', 'createdDate')
     if folder_url:
+        r = requests.get(folder_url)
+        # Resolve to redirect.
+        # This will allow shortlinks to be used.
+        # TODO: Accomodate when folder_url is private,
+        # and this redirects to login.
+        folder_url = r.url
         folder_id = folder_url.split('/')[-1]
         file = get_newest_file(folder_id, select_by)
         redirect_url = file['alternateLink'] if file else folder_url

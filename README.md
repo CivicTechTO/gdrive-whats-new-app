@@ -21,6 +21,8 @@ so:
 
 [example2]: http://example.com?folder_url=https://drive.google.com/drive/u/0/folders/1zGubetz_yE-Lt4jI98MtqnwY8FBZZGnt&select_by=modifiedDate
 
+Note that `folder_url` can resolve redirects like shortlinks.
+
 <!-- Everything above this linebreak will appear on app homepage. -->
 ---
 <!-- Everything below will only be in the repository README. -->
