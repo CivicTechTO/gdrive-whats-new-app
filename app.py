@@ -1,3 +1,7 @@
+import base64
+import json
+import os
+
 from flask import Flask, redirect, request, render_template
 from flaskext.markdown import Markdown
 from oauth2client.service_account import ServiceAccountCredentials
@@ -6,6 +10,8 @@ from pydrive.drive import GoogleDrive
 
 APP_BASE_URL_DEFAULT = 'http://example.com'
 GOOGLE_SCOPES = ['https://www.googleapis.com/auth/drive']
+
+GOOGLE_CREDS = base64.b64decode(os.environ.get('GOOGLE_CREDS_BASE64', ''))
 
 app = Flask(__name__, template_folder='.')
 Markdown(app)
@@ -30,7 +36,11 @@ def format_readme(content, base_url):
     return content
 
 def get_newest_file(folder_id, select_by):
-    creds = ServiceAccountCredentials.from_json_keyfile_name('service-key.json', GOOGLE_SCOPES)
+    if GOOGLE_CREDS:
+        keyfile_dict = json.loads(GOOGLE_CREDS)
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(keyfile_dict, GOOGLE_SCOPES)
+    else:
+        creds = ServiceAccountCredentials.from_json_keyfile_name('service-key.json', GOOGLE_SCOPES)
     gauth = GoogleAuth()
     gauth.credentials = creds
     gdrive = GoogleDrive(gauth)

@@ -38,6 +38,20 @@ pipenv install
 pipenv run gunicorn app:app --log-file -
 ```
 
+## Configuration
+
+A Google service account keyfile is needed in order for this app to
+work. You may generate a keyfile via [these instructions][keyfile].
+
+[keyfile]: https://cloud.google.com/iam/docs/creating-managing-service-account-keys#iam-service-account-keys-create-console
+
+You may then either store the file as `service-key.json` in the project
+root directory, or you may convert the keyfile into a base64-encoded
+string, and store that in `GOOGLE_CREDS_BASE64`. For example, on
+linux-based systems:
+
+    export GOOGLE_CREDS_BASE64="$( cat service-key.json | base64 )"
+
 ## Deployment
 
 - The [demo heroku app][demo] will auto-deploy all changes to `master` branch
